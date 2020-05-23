@@ -32,6 +32,16 @@ app.post('/requests', (req, res) => {
   })
 })
 
+app.put('/requests', (req, res) => {
+  request_model.updateRequest(req.body)
+  .then(response => {
+    res.status(200).send(response);
+  })
+  .catch(error => {
+    res.status(500).send(error);
+  })
+})
+
 app.delete('/requests/:id', (req, res) => {
   request_model.deleteRequest(req.params.id)
   .then(response => {

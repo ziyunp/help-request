@@ -27,7 +27,20 @@ const createRequest = (body) => {
       if (error) {
         reject(error)
       }
+      // TODO: for all the results.rows, check if there's results before doing that!
       resolve(`A new request has been added. Title: ${results.rows[0].title}, Location: ${results.rows[0].location}`)
+    })
+  })
+}
+
+const updateRequest = (body) => {
+  return new Promise(function(resolve, reject) {
+    const { id, status } = body
+    pool.query('UPDATE requests SET status = $2 WHERE id = $1 RETURNING *', [id, status], (error, results) => {
+      if (error) {
+        reject(error)
+      }
+      resolve(`The status of the request has been updated. Title: ${results.rows[0].title}, Location: ${results.rows[0].location}, Status: ${results.rows[0].status}`)
     })
   })
 }
@@ -46,5 +59,6 @@ const deleteRequest = (id) => {
 module.exports = {
   getRequests,
   createRequest,
-  deleteRequest,
+  updateRequest,
+  deleteRequest
 }

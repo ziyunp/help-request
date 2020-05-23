@@ -22,7 +22,24 @@ function App() {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({title, location, status}),
+      body: JSON.stringify({title, location, status})
+    })
+      .then(response => {
+        return response.text();
+      })
+      .then(data => {
+        alert(data);
+        getRequest();
+      });
+  }
+  function updateRequest(status) {
+    let id = prompt('Enter request id');
+    fetch('http://localhost:3001/requests', {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({id, status})
     })
       .then(response => {
         return response.text();
@@ -33,7 +50,7 @@ function App() {
       });
   }
   function deleteRequest() {
-    let id = prompt('Enter merchant id');
+    let id = prompt('Enter request id');
     fetch(`http://localhost:3001/requests/${id}`, {
       method: 'DELETE',
     })
@@ -50,6 +67,10 @@ function App() {
       {requests ? requests : 'There is no request data available'}
       <br />
       <button onClick={createRequest}>Create request</button>
+      <br />
+      <button onClick={() => updateRequest('with_helper')}>With helper</button>
+      <br />
+      <button onClick={() => updateRequest('addressed')}>Addressed</button>
       <br />
       <button onClick={deleteRequest}>Delete request</button>
     </div>
