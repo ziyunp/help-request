@@ -31,6 +31,7 @@ function Appbar() {
             onRequestClose={closeRequestModal} 
             centered
             style={customStyles}
+            ariaHideApp={false}
           >
 						<CreateRequest closeModal={closeRequestModal} />
 					</Modal>

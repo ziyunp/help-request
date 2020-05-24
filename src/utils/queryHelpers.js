@@ -1,7 +1,5 @@
-export const createRequest = () => {
-  let title = prompt('Enter request title');
-  let location = prompt('Enter location');
-  let status = 'raised';
+export const createRequest = (title, location) => {
+  const status = 'raised';
   fetch('http://localhost:3001/requests', {
     method: 'POST',
     headers: {
