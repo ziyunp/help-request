@@ -18,7 +18,6 @@ function CreateRequest(props) {
   }
 
   const onSubmit = () => {
-    console.log(errors.title);
     createRequest(titleValue, locationValue);
     closeModal();
   }

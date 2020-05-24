@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import Appbar from './components/Appbar';
+import Scenes from './components/Scenes';
 
 function App() {
   const [requests, setRequests] = useState(false);
+  const [sceneIndex, setSceneIndex] = useState(0);
+
   useEffect(() => {
     getRequest();
   }, []);
@@ -45,9 +48,15 @@ function App() {
         getRequest();
       });
   }
+
+  const handleTabChange = (value) => {
+    setSceneIndex(value);
+  }
+
   return (
     <div className="App">
-      <Appbar />
+      <Appbar onChange={handleTabChange} />
+      <Scenes value={sceneIndex}/>
       <div>
         {requests ? requests : 'There is no request data available'}
         <br />
