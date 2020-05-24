@@ -3,21 +3,8 @@ import Appbar from './components/Appbar';
 import Scenes from './components/Scenes';
 
 function App() {
-  const [requests, setRequests] = useState(false);
   const [sceneIndex, setSceneIndex] = useState(0);
 
-  useEffect(() => {
-    getRequest();
-  }, []);
-  function getRequest() {
-    fetch('http://localhost:3001')
-      .then(response => {
-        return response.text();
-      })
-      .then(data => {
-        setRequests(data);
-      });
-  }
   function updateRequest(status) {
     let id = prompt('Enter request id');
     fetch('http://localhost:3001/requests', {
@@ -32,7 +19,7 @@ function App() {
       })
       .then(data => {
         alert(data);
-        getRequest();
+        // getRequest();
       });
   }
   function deleteRequest() {
@@ -45,7 +32,7 @@ function App() {
       })
       .then(data => {
         alert(data);
-        getRequest();
+        // getRequest();
       });
   }
 
@@ -58,7 +45,6 @@ function App() {
       <Appbar onChange={handleTabChange} />
       <Scenes value={sceneIndex}/>
       <div>
-        {requests ? requests : 'There is no request data available'}
         <br />
         <button onClick={() => updateRequest('with_helper')}>With helper</button>
         <br />

@@ -1,7 +1,7 @@
 import React from 'react';
 import TabPanel from './TabPanel';
-import RequestQueue from './RequestQueue';
-import PastRequests from './PastRequests';
+import RequestQueue from '../scenes/RequestQueue';
+import PastRequests from '../scenes/PastRequests';
 
 function Scenes(props) {
   const { value } = props;
