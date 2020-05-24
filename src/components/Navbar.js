@@ -10,8 +10,6 @@ function Navbar() {
               Request Queue
             </Typography>
           </ListItemText>
-
-
           <ListItemText inset>
             <Typography color="inherit" variant="title">
                 Past Requests

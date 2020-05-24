@@ -1,9 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { AppBar, Button, Toolbar, Typography } from '@material-ui/core';
-
+import Modal from 'react-modal';
+import CreateRequest from './CreateRequest';
 import Navbar from './Navbar';
 
 function Appbar() {
+  const [ isModalOpen, setIsModalOpen ] = useState(false);
+  function toggleOpenRequestModal() {
+    setIsModalOpen(!isModalOpen);
+  }
+  function closeRequestModal() {
+    setIsModalOpen(false);
+  }
+
   return (
     <AppBar color='primary' position="static">
       <Toolbar className="top">
@@ -14,11 +23,32 @@ function Appbar() {
         <Navbar />
         </div>
         <div className="top-right">
-          <Button variant="contained">New Request</Button>
+          <Button variant="contained" onClick={toggleOpenRequestModal}>
+            New Request
+          </Button>
+          <Modal 
+            isOpen={isModalOpen} 
+            onRequestClose={closeRequestModal} 
+            centered
+            style={customStyles}
+          >
+						<CreateRequest closeModal={closeRequestModal} />
+					</Modal>
         </div>
       </Toolbar>
     </AppBar>
   );
 }
+
+const customStyles = {
+  content: {
+    top: "50%",
+    left: "50%",
+    width: "500px",
+    bottom: "auto",
+    marginRight: "-50%",
+    transform: "translate(-50%,-50%)"
+  }
+};
 
 export default Appbar;

@@ -43,3 +43,26 @@ code {
 	justify-content: flex-end;
 	align-items: center;
 }
+
+.input {
+  margin-top: 20px;
+}
+
+.close-button {
+  position: static;
+  left: 340px;
+}
+
+.form-buttons {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.form-buttons .submit {
+  flex-direction: row;
+}
+
+.form-buttons .cancel {
+  flex-direction: row;
+  margin-right: 15px;
+}

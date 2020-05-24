@@ -15,25 +15,6 @@ function App() {
         setRequests(data);
       });
   }
-  function createRequest() {
-    let title = prompt('Enter request title');
-    let location = prompt('Enter location');
-    let status = 'raised';
-    fetch('http://localhost:3001/requests', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({title, location, status})
-    })
-      .then(response => {
-        return response.text();
-      })
-      .then(data => {
-        alert(data);
-        getRequest();
-      });
-  }
   function updateRequest(status) {
     let id = prompt('Enter request id');
     fetch('http://localhost:3001/requests', {
@@ -69,8 +50,6 @@ function App() {
       <Appbar />
       <div>
         {requests ? requests : 'There is no request data available'}
-        <br />
-        <button onClick={createRequest}>Create request</button>
         <br />
         <button onClick={() => updateRequest('with_helper')}>With helper</button>
         <br />
