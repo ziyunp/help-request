@@ -9,16 +9,17 @@ function CreateRequest(props) {
   const { handleSubmit, register, errors } = useForm();
   const { closeModal } = props;
 
-  const handleTitleChange = (e) => {
+  function handleTitleChange (e) {
     setTitleValue(e.target.value);
   }
 
-  const handleLocationChange = (e) => {
+  function handleLocationChange (e) {
     setLocationValue(e.target.value);
   }
 
-  const onSubmit = () => {
-    createRequest(titleValue, locationValue);
+  async function onSubmit () {
+    const updatedRequests = await createRequest(titleValue, locationValue);
+    props.updateState(updatedRequests);
     closeModal();
   }
 

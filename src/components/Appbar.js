@@ -33,7 +33,7 @@ function Appbar(props) {
             style={customStyles}
             ariaHideApp={false}
           >
-						<CreateRequest closeModal={closeRequestModal} />
+						<CreateRequest closeModal={closeRequestModal} updateState={props.updateState}/>
 					</Modal>
         </div>
       </Toolbar>

@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import RequestList from '../components/RequestList';
-import { getRequests } from '../utils/queryHelpers';
 import { isActive } from '../utils/dataHelpers';
 
 const columns = [
@@ -24,17 +23,16 @@ const columns = [
   },
 ];
 
-function RequestQueue() {
+function RequestQueue(props) {
   const [ requests, setRequests ] = useState(false);
   useEffect(() => {
-    async function fetchData() {
-      const data = await getRequests();
-      const requestsData = JSON.parse(data);
-      const filteredData = requestsData.filter(d => isActive(d));
+    function fetchData() {
+      const { data } = props;      
+      const filteredData = data.filter(d => isActive(d));
       setRequests(filteredData);
     }
     fetchData();
-  }, []);
+  }, [props]);
   
   return (
     <RequestList data={requests} columns={columns}/>
