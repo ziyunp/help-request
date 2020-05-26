@@ -7,7 +7,7 @@ export const getRequests = () => {
 
 export const createRequest = (title, location) => {
   const status = 'raised';
-  fetch('http://localhost:3001/requests', {
+  return fetch('http://localhost:3001/requests', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -19,6 +19,36 @@ export const createRequest = (title, location) => {
     })
     .then(data => {
       alert(data);
-      // getRequest();
+      return getRequests();
+    })
+}
+
+export const updateRequest = (id, status) => {
+  return fetch('http://localhost:3001/requests', {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({id, status})
+  })
+    .then(response => {
+      return response.text();
+    })
+    .then(data => {
+      alert(data);
+      return getRequests();
+    });
+}
+
+export const deleteRequest = (id) => {
+  return fetch(`http://localhost:3001/requests/${id}`, {
+    method: 'DELETE',
+  })
+    .then(response => {
+      return response.text();
+    })
+    .then(data => {
+      alert(data);
+      return getRequests();
     });
 }

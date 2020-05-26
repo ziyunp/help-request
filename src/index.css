@@ -53,16 +53,16 @@ code {
   left: 340px;
 }
 
-.form-buttons {
+.action-buttons {
   display: flex;
   justify-content: flex-end;
 }
 
-.form-buttons .submit {
-  flex-direction: row;
-}
-
-.form-buttons .cancel {
+.action-buttons .left {
   flex-direction: row;
   margin-right: 15px;
+}
+
+.action-buttons .right {
+  flex-direction: row;
 }

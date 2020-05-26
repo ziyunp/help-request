@@ -61,8 +61,8 @@ function CreateRequest(props) {
             error={errors.location}
             />
         </div>
-        <div className="input form-buttons">
-        <div className="cancel">
+        <div className="input action-buttons">
+        <div className="left">
           <Button 
             variant="outlined" 
             onClick={closeModal}
@@ -70,7 +70,7 @@ function CreateRequest(props) {
             cancel
           </Button>
         </div>
-        <div className="submit">
+        <div className="right">
           <Button 
             type="submit"
             variant="contained" 
