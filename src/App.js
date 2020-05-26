@@ -28,7 +28,7 @@ function App() {
   return (
     <div className="App">
       <Appbar onChange={handleTabChange} updateState={updateState} />
-      <Scenes value={sceneIndex} data={requests} />
+      <Scenes value={sceneIndex} data={requests} updateState={updateState} />
     </div>
   );
 }

@@ -29,7 +29,7 @@ function RequestQueue(props) {
   }, [props]);
   
   return (
-    <RequestList data={requests} columns={columns}/>
+    <RequestList data={requests} columns={columns} updateState={props.updateState} />
   );
 }
 

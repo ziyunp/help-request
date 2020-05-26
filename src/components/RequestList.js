@@ -9,7 +9,7 @@ function RequestList(props) {
   const classes = useStyles();
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
-  const { columns } = props;
+  const { columns, updateState } = props;
   
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -51,7 +51,7 @@ function RequestList(props) {
             {requests.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               .map((row) => {
                 return (
-                  <RequestItem columns={columns} data={row}/>
+                  <RequestItem columns={columns} data={row} updateState={updateState} />
                 );
             })}
           </TableBody>
@@ -76,7 +76,7 @@ const useStyles = makeStyles({
     width: '100%',
   },
   container: {
-    maxHeight: 440,
+    maxHeight: 600,
   },
 });
 
