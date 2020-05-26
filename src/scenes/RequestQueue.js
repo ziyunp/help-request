@@ -26,12 +26,12 @@ const columns = [
 function RequestQueue(props) {
   const [ requests, setRequests ] = useState(false);
   useEffect(() => {
-    function fetchData() {
+    function filterData() {
       const { data } = props;      
       const filteredData = data.filter(d => isActive(d));
       setRequests(filteredData);
     }
-    fetchData();
+    filterData();
   }, [props]);
   
   return (
