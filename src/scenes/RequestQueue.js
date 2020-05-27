@@ -23,20 +23,19 @@ const columns = [
   },
 ];
 
-function RequestQueue(props) {
+function RequestQueue({ data, updateState }) {
   const [ requests, setRequests ] = useState(false);
 
   useEffect(() => {
     function filterData() {
-      const { data } = props;      
       const filteredData = data.filter(d => isActive(d));
       setRequests(filteredData);
     }
     filterData();
-  }, [props]);
+  }, [data]);
   
   return (
-    <RequestList data={requests} columns={columns} updateState={props.updateState} />
+    <RequestList data={requests} columns={columns} updateState={updateState} />
   );
 }
 

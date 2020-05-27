@@ -2,9 +2,7 @@ import React from 'react';
 import { Button } from '@material-ui/core';
 import { updateRequest } from '../utils/queryHelpers';
 
-function StatusButton(props) {
-  const { label, status, color, id, updateState } = props; 
-
+function StatusButton({ label, status, color, id, updateState }) {
   async function handleClick(id, status) {
     const updatedRequests = await updateRequest(id, status);
     updateState(updatedRequests);

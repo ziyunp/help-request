@@ -4,12 +4,11 @@ import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TablePag
 import RequestItem from './RequestItem';
 import { createData } from '../utils/dataHelpers';
 
-function RequestList(props) {
+function RequestList({ columns, data, updateState }) {
   const [ requests, setRequests ] = useState([]);
   const classes = useStyles();
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
-  const { columns, updateState } = props;
   
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -21,14 +20,13 @@ function RequestList(props) {
   };
   useEffect(() => {
     function getData() {
-      const { data } = props;
       if (data) {
         const rows = data.map(d => createData(d));
         setRequests(rows);
       }
     }
     getData();
-  }, [props]);
+  }, [data]);
  
   return (
     <Paper className={classes.root}>

@@ -4,7 +4,7 @@ import Modal from 'react-modal';
 import CreateRequest from './CreateRequest';
 import Navbar from './Navbar';
 
-function Appbar(props) {
+function Appbar({ onChange, updateState }) {
   const [ isModalOpen, setIsModalOpen ] = useState(false);
   function toggleOpenRequestModal() {
     setIsModalOpen(!isModalOpen);
@@ -20,7 +20,7 @@ function Appbar(props) {
           Help-Request App
         </Typography>       
         <div className="top-middle">
-        <Navbar onChange={props.onChange}/>
+        <Navbar onChange={onChange}/>
         </div>
         <div className="top-right">
           <Button variant="contained" onClick={toggleOpenRequestModal}>
@@ -33,7 +33,7 @@ function Appbar(props) {
             style={customStyles}
             ariaHideApp={false}
           >
-						<CreateRequest closeModal={closeRequestModal} updateState={props.updateState}/>
+						<CreateRequest closeModal={closeRequestModal} updateState={updateState}/>
 					</Modal>
         </div>
       </Toolbar>

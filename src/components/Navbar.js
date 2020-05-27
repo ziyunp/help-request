@@ -20,9 +20,8 @@ function LinkTab(props) {
   );
 };
 
-function Navbar(props) {
+function Navbar({ onChange }) {
   const [value, setValue] = useState(0);
-  const { onChange } = props;
   const handleChange = (event, newValue) => {
     setValue(newValue);
     onChange(newValue);

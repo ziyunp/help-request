@@ -3,14 +3,12 @@ import { Button, TableRow, TableCell } from '@material-ui/core';
 import StatusButton from './StatusButton';
 import { deleteRequest } from '../utils/queryHelpers';
 
-function RequestItem(props) {
-  const { columns, data, updateState } = props;
-
+function RequestItem({ columns, data, updateState }) {
   async function handleDelete(id) {
     const updatedRequests = await deleteRequest(id);
     updateState(updatedRequests);
   }
-  
+
   return(
     <TableRow hover role="checkbox" tabIndex={-1} key={data.id}>
       {columns.map((column) => {

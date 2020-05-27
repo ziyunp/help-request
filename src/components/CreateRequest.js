@@ -3,11 +3,10 @@ import { useForm } from "react-hook-form";
 import { Button, TextField, Typography } from '@material-ui/core';
 import { createRequest } from '../utils/queryHelpers';
 
-function CreateRequest(props) {
+function CreateRequest({ closeModal, updateState }) {
   const [ titleValue, setTitleValue ] = useState('');
   const [ locationValue, setLocationValue ] = useState('');
   const { handleSubmit, register, errors } = useForm();
-  const { closeModal } = props;
 
   function handleTitleChange (e) {
     setTitleValue(e.target.value);
@@ -19,7 +18,7 @@ function CreateRequest(props) {
 
   async function onSubmit () {
     const updatedRequests = await createRequest(titleValue, locationValue);
-    props.updateState(updatedRequests);
+    updateState(updatedRequests);
     closeModal();
   }
 

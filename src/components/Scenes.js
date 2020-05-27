@@ -3,8 +3,7 @@ import TabPanel from './TabPanel';
 import RequestQueue from '../scenes/RequestQueue';
 import PastRequests from '../scenes/PastRequests';
 
-function Scenes(props) {
-  const { value, data, updateState } = props;
+function Scenes({ value, data, updateState }) {
   return (
     <div>
       <TabPanel value={value} index={0}>
