@@ -27,7 +27,6 @@ export const createRequest = (title, location) => {
       return response.text();
     })
     .then(data => {
-      alert(data);
       return getRequests();
     })
 }
@@ -44,7 +43,6 @@ export const updateRequest = (id, status) => {
       return response.text();
     })
     .then(data => {
-      alert(data);
       return getRequests();
     });
 }
@@ -57,7 +55,6 @@ export const deleteRequest = (id) => {
       return response.text();
     })
     .then(data => {
-      alert(data);
       return getRequests();
     });
 }
