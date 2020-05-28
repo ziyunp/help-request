@@ -37,7 +37,7 @@ function CreateRequest({ closeModal, updateState }) {
         <div className="input">
           <TextField
             id="outlined-basic" 
-            label="Title" 
+            label="Question Summary" 
             variant="outlined" 
             fullWidth
             name="title"
@@ -51,7 +51,7 @@ function CreateRequest({ closeModal, updateState }) {
         <div className="input">
           <TextField
             id="outlined-basic" 
-            label="Location" 
+            label="Location e.g. Ray13" 
             variant="outlined" 
             name="location"
             value={locationValue}
