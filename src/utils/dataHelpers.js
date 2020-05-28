@@ -4,8 +4,8 @@ export const isActive = request => {
   return request.status !== ADDRESSED;
 }
 
-export const createData = (pos, request) => {
+export const createData = (pos, isNext, request) => {
   pos = pos.toString();
   const { id, title, location, status } = request;
-  return { pos, id, title, location, status };
+  return { pos, isNext, id, title, location, status };
 }

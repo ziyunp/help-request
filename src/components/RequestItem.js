@@ -2,7 +2,7 @@ import React from 'react';
 import { Button, TableRow, TableCell } from '@material-ui/core';
 import StatusButton from './StatusButton';
 import { deleteRequest } from '../utils/queryHelpers';
-import { RAISED, ADDRESSED } from '../utils/constants';
+import { RAISED, ADDRESSED, WITH_HELPER } from '../utils/constants';
 
 function RequestItem({ columns, data, updateState }) {
   async function handleDelete(id) {
@@ -16,10 +16,20 @@ function RequestItem({ columns, data, updateState }) {
         if (column.label === "Actions") {
           if (data.status === RAISED) {
             return (
-              <TableCell key={column.id} align={column.align} >
-                <Button variant="outlined" size="small" onClick={() => handleDelete(data.id)} >
-                  Cancel
-                </Button>
+              <TableCell key={column.id} align={column.align}>
+                <div className="action-buttons">
+                  {data.isNext && 
+                    <div className="left">
+                      <StatusButton label="Give Help" status={WITH_HELPER} color="primary" id={data.id} updateState={updateState} />
+                    </div>
+                  }
+                  <div className="right">
+                  <Button variant="text" size="small" onClick={() => handleDelete(data.id)}>
+                    Cancel
+                  </Button>
+                  </div>
+                  
+                </div>
               </TableCell>
             );
           } else {

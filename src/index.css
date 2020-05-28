@@ -40,7 +40,7 @@ code {
 	display: flex;
 	flex-direction: row;
 	flex-wrap: nowrap;
-	justify-content: space-evenly;
+	justify-content: flex-end;
 	align-items: center;
 }
 

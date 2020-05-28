@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TablePagination, TableRow }from '@material-ui/core';
 import RequestItem from './RequestItem';
 import { createData } from '../utils/dataHelpers';
+import { RAISED } from '../utils/constants';
 
 function RequestList({ columns, data, updateState }) {
   const [ requests, setRequests ] = useState([]);
@@ -22,7 +23,15 @@ function RequestList({ columns, data, updateState }) {
     function getData() {
       if (data) {
         let pos = 1;
-        const rows = data.map(d => createData(pos++, d));
+        const rows = [];
+        for (let i = 0; i < data.length; i++) {
+          let isNext = false;
+          if (data[i].status === RAISED && 
+            (i - 1 < 0 || data[i - 1].status !== RAISED)) {
+              isNext = true;
+          }
+          rows.push(createData(pos++, isNext, data[i]));
+        }
         setRequests(rows);
       }
     }
