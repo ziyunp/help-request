@@ -1,5 +1,7 @@
+import { ADDRESSED } from '../utils/constants';
+
 export const isActive = request => {
-  return request.status !== 'addressed';
+  return request.status !== ADDRESSED;
 }
 
 export const createData = request => {

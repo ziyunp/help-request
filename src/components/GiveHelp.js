@@ -2,13 +2,14 @@ import React, { useEffect, useState } from 'react';
 import { useForm } from "react-hook-form";
 import { Button, Typography } from '@material-ui/core';
 import { getNextRequest, updateRequest } from '../utils/queryHelpers';
+import { WITH_HELPER } from '../utils/constants';
 
 function GiveHelp({ closeModal, updateState }) {
   const [ request, setRequest ] = useState({});
   const { handleSubmit } = useForm();
 
   async function onSubmit () {
-    const updatedRequests = await updateRequest(request.id, 'with_helper');
+    const updatedRequests = await updateRequest(request.id, WITH_HELPER);
     updateState(updatedRequests);
     closeModal();
   }

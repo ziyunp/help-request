@@ -2,6 +2,7 @@ import React from 'react';
 import { Button, TableRow, TableCell } from '@material-ui/core';
 import StatusButton from './StatusButton';
 import { deleteRequest } from '../utils/queryHelpers';
+import { RAISED, ADDRESSED } from '../utils/constants';
 
 function RequestItem({ columns, data, updateState }) {
   async function handleDelete(id) {
@@ -13,7 +14,7 @@ function RequestItem({ columns, data, updateState }) {
     <TableRow hover role="checkbox" tabIndex={-1} key={data.id}>
       {columns.map((column) => {
         if (column.label === "Actions") {
-          if (data.status === "raised") {
+          if (data.status === RAISED) {
             return (
               <TableCell key={column.id} align={column.align} >
                 <Button variant="outlined" size="small" onClick={() => handleDelete(data.id)} >
@@ -24,7 +25,7 @@ function RequestItem({ columns, data, updateState }) {
           } else {
             return (
               <TableCell key={column.id} align={column.align} className="actionButtons">
-                <StatusButton label="Addressed" status="addressed" color="secondary" id={data.id} updateState={updateState} />
+                <StatusButton label="Addressed" status={ADDRESSED} color="secondary" id={data.id} updateState={updateState} />
               </TableCell>
             );
           }
@@ -33,7 +34,7 @@ function RequestItem({ columns, data, updateState }) {
           const value = data[column.id];
           return (
             <TableCell key={column.id} align={column.align}>
-              {column.format && typeof value === 'number' ? column.format(value) : value}
+              {value}
             </TableCell>
           );
         }

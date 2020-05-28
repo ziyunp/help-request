@@ -1,3 +1,5 @@
+import { RAISED } from '../utils/constants';
+
 export const getRequests = () => {
   return fetch('http://localhost:3001')
     .then(response => {
@@ -13,7 +15,7 @@ export const getNextRequest = () => {
 }
 
 export const createRequest = (title, location) => {
-  const status = 'raised';
+  const status = RAISED;
   return fetch('http://localhost:3001/requests', {
     method: 'POST',
     headers: {
