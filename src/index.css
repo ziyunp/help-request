@@ -26,10 +26,11 @@ code {
 }
 
 .top-middle {
-  flex: 2;
+  flex: 3;
   flex-direction: row;
   align-items: center;
   margin-left: auto;
+  margin-right: 50px;
   justify-content: space-between;
 }
 

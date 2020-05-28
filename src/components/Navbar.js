@@ -36,7 +36,8 @@ function Navbar({ onChange }) {
       aria-label="nav tabs example"
     >
       <LinkTab label="Request Queue" href="/request-queue" {...a11yProps(0)} />
-      <LinkTab label="Past Requests" href="/past-requests" {...a11yProps(1)} />
+      <LinkTab label="With Helper" href="/with-helper" {...a11yProps(1)} />
+      <LinkTab label="Past Requests" href="/past-requests" {...a11yProps(2)} />
     </Tabs>
   );
 }

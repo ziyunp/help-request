@@ -1,7 +1,15 @@
-import { ADDRESSED } from '../utils/constants';
+import { RAISED, WITH_HELPER, ADDRESSED } from '../utils/constants';
 
-export const isActive = request => {
-  return request.status !== ADDRESSED;
+export const isPending = request => {
+  return request.status === RAISED;
+}
+
+export const isWithHelper = request => {
+  return request.status === WITH_HELPER;
+}
+
+export const isAddressed = request => {
+  return request.status === ADDRESSED;
 }
 
 export const createData = request => {

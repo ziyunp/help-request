@@ -29,7 +29,7 @@ function Appbar({ onChange, updateState }) {
           Help-Request App
         </Typography>       
         <div className="top-middle">
-        <Navbar onChange={onChange}/>
+          <Navbar onChange={onChange}/>
         </div>
         <div className="top-right">
           <Button variant="contained" onClick={toggleOpenRequestModal}>

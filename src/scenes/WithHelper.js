@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import RequestList from '../components/RequestList';
-import { isAddressed } from '../utils/dataHelpers';
+import { isWithHelper } from '../utils/dataHelpers';
 
 const columns = [
-  { id: 'id', label: 'Request ID', minWidth: 100},
-  { id: 'title', label: 'Title', minWidth: 300},
+  { id: 'id', label: 'Request ID', minWidth: 100 },
+  { id: 'title', label: 'Title', minWidth: 300 },
   {
     id: 'location',
     label: 'Location',
@@ -13,15 +13,22 @@ const columns = [
   {
     id: 'status',
     label: 'Status',
-    minWidth: 200,
+    minWidth: 50,
+  },
+  {
+    id: 'actions',
+    label: 'Actions',
+    minWidth: 150,
+    align: 'center'
   },
 ];
 
-function RequestQueue({ data, updateState }) {
+function WithHelper({ data, updateState }) {
   const [ requests, setRequests ] = useState(false);
+
   useEffect(() => {
     function filterData() {
-      const filteredData = data.filter(d => isAddressed(d));
+      const filteredData = data.filter(d => isWithHelper(d));
       setRequests(filteredData);
     }
     filterData();
@@ -32,4 +39,4 @@ function RequestQueue({ data, updateState }) {
   );
 }
 
-export default RequestQueue;
+export default WithHelper;
