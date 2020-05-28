@@ -1,21 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import RequestList from '../components/RequestList';
 import { isAddressed } from '../utils/dataHelpers';
-
-const columns = [
-  { id: 'pos', label: 'No.', minWidth: 100 },
-  { id: 'title', label: 'Title', minWidth: 300},
-  {
-    id: 'location',
-    label: 'Location',
-    minWidth: 170,
-  },
-  {
-    id: 'status',
-    label: 'Status',
-    minWidth: 200,
-  },
-];
+import { BASE_COLUMNS } from '../utils/constants';
 
 function RequestQueue({ data, updateState }) {
   const [ requests, setRequests ] = useState(false);
@@ -28,7 +14,7 @@ function RequestQueue({ data, updateState }) {
   }, [data]);
   
   return (
-    <RequestList data={requests} columns={columns} updateState={updateState} />
+    <RequestList data={requests} columns={BASE_COLUMNS} updateState={updateState} />
   );
 }
 
