@@ -5,6 +5,13 @@ export const getRequests = () => {
     })
 }
 
+export const getNextRequest = () => {
+  return fetch('http://localhost:3001/nextRequest')
+    .then(response => {
+      return response.text();
+    })
+}
+
 export const createRequest = (title, location) => {
   const status = 'raised';
   return fetch('http://localhost:3001/requests', {

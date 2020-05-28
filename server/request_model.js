@@ -20,6 +20,17 @@ const getRequests = () => {
   }) 
 }
 
+const getNextRequest = () => {
+  return new Promise(function(resolve, reject) {
+    pool.query('SELECT * FROM requests WHERE status=\'raised\' ORDER BY id ASC LIMIT 1', (error, results) => {
+      if (error) {
+        reject(error)
+      }
+      resolve(results.rows);
+    })
+  }) 
+}
+
 const createRequest = (body) => {
   return new Promise(function(resolve, reject) {
     const { title, location, status } = body
@@ -58,6 +69,7 @@ const deleteRequest = (id) => {
 
 module.exports = {
   getRequests,
+  getNextRequest,
   createRequest,
   updateRequest,
   deleteRequest

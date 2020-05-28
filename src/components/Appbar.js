@@ -2,15 +2,24 @@ import React, { useState } from 'react';
 import { AppBar, Button, Toolbar, Typography } from '@material-ui/core';
 import Modal from 'react-modal';
 import CreateRequest from './CreateRequest';
+import GiveHelp from './GiveHelp';
 import Navbar from './Navbar';
 
 function Appbar({ onChange, updateState }) {
-  const [ isModalOpen, setIsModalOpen ] = useState(false);
+  const [ isRequestModalOpen, setIsRequestModalOpen ] = useState(false);
+  const [ isHelpModalOpen, setIsHelpModalOpen ] = useState(false);
+
   function toggleOpenRequestModal() {
-    setIsModalOpen(!isModalOpen);
+    setIsRequestModalOpen(!isRequestModalOpen);
   }
   function closeRequestModal() {
-    setIsModalOpen(false);
+    setIsRequestModalOpen(false);
+  }
+  function toggleOpenHelpModal() {
+    setIsHelpModalOpen(!isHelpModalOpen);
+  }
+  function closeHelpModal() {
+    setIsHelpModalOpen(false);
   }
 
   return (
@@ -27,13 +36,25 @@ function Appbar({ onChange, updateState }) {
             New Request
           </Button>
           <Modal 
-            isOpen={isModalOpen} 
+            isOpen={isRequestModalOpen} 
             onRequestClose={closeRequestModal} 
             centered
             style={customStyles}
             ariaHideApp={false}
           >
 						<CreateRequest closeModal={closeRequestModal} updateState={updateState}/>
+					</Modal>
+          <Button variant="contained" onClick={toggleOpenHelpModal}>
+            Give help
+          </Button>
+          <Modal 
+            isOpen={isHelpModalOpen} 
+            onHelpClose={closeHelpModal} 
+            centered
+            style={customStyles}
+            ariaHideApp={false}
+          >
+						<GiveHelp closeModal={closeHelpModal} updateState={updateState}/>
 					</Modal>
         </div>
       </Toolbar>

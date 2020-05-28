@@ -16,23 +16,15 @@ function RequestItem({ columns, data, updateState }) {
           if (data.status === "raised") {
             return (
               <TableCell key={column.id} align={column.align} >
-                <div className="action-buttons">
-                  <div className="left">
-                    <StatusButton label="With Helper" status="with_helper" color="primary" id={data.id} className="left" updateState={updateState} />
-                  </div>
-                  <div className="right">
-                    <Button variant="outlined" size="small" onClick={() => handleDelete(data.id)} className="right" >
-                      Cancel
-                    </Button>
-                  </div>              
-                </div>
-                
+                <Button variant="outlined" size="small" onClick={() => handleDelete(data.id)} >
+                  Cancel
+                </Button>
               </TableCell>
             );
           } else {
             return (
               <TableCell key={column.id} align={column.align} className="actionButtons">
-                <StatusButton label="Addressed" status="addressed" color="secondary" id={data.id} className="left" updateState={updateState} />
+                <StatusButton label="Addressed" status="addressed" color="secondary" id={data.id} updateState={updateState} />
               </TableCell>
             );
           }

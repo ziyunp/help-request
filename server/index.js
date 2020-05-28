@@ -22,6 +22,16 @@ app.get('/', (req, res) => {
   })
 })
 
+app.get('/nextRequest', (req, res) => {
+  request_model.getNextRequest()
+  .then(response => {
+    res.status(200).send(response);
+  })
+  .catch(error => {
+    res.status(500).send(error);
+  })
+})
+
 app.post('/requests', (req, res) => {
   request_model.createRequest(req.body)
   .then(response => {
