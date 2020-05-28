@@ -3,7 +3,7 @@ import RequestList from '../components/RequestList';
 import { isWithHelper } from '../utils/dataHelpers';
 
 const columns = [
-  { id: 'id', label: 'Request ID', minWidth: 100 },
+  { id: 'pos', label: 'No.', minWidth: 100 },
   { id: 'title', label: 'Title', minWidth: 300 },
   {
     id: 'location',

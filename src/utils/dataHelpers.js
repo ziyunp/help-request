@@ -12,7 +12,8 @@ export const isAddressed = request => {
   return request.status === ADDRESSED;
 }
 
-export const createData = request => {
-  const { id, title, location, status } = request;
-  return { id, title, location, status };
+export const createData = (pos, request) => {
+  pos = pos.toString();
+  const { title, location, status } = request;
+  return { pos, title, location, status };
 }

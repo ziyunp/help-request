@@ -21,7 +21,8 @@ function RequestList({ columns, data, updateState }) {
   useEffect(() => {
     function getData() {
       if (data) {
-        const rows = data.map(d => createData(d));
+        let pos = 1;
+        const rows = data.map(d => createData(pos++, d));
         setRequests(rows);
       }
     }
