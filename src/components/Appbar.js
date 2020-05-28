@@ -6,20 +6,20 @@ import GiveHelp from './GiveHelp';
 import Navbar from './Navbar';
 
 function Appbar({ onChange, updateState }) {
-  const [ isRequestModalOpen, setIsRequestModalOpen ] = useState(false);
-  const [ isHelpModalOpen, setIsHelpModalOpen ] = useState(false);
+  const [ isRequestModalOpen, setRequestModalOpen ] = useState(false);
+  const [ isHelpModalOpen, setHelpModalOpen ] = useState(false);
 
   function toggleOpenRequestModal() {
-    setIsRequestModalOpen(!isRequestModalOpen);
+    setRequestModalOpen(!isRequestModalOpen);
   }
   function closeRequestModal() {
-    setIsRequestModalOpen(false);
+    setRequestModalOpen(false);
   }
   function toggleOpenHelpModal() {
-    setIsHelpModalOpen(!isHelpModalOpen);
+    setHelpModalOpen(!isHelpModalOpen);
   }
   function closeHelpModal() {
-    setIsHelpModalOpen(false);
+    setHelpModalOpen(false);
   }
 
   return (
@@ -69,7 +69,8 @@ const customStyles = {
     width: "500px",
     bottom: "auto",
     marginRight: "-50%",
-    transform: "translate(-50%,-50%)"
+    transform: "translate(-50%,-50%)",
+    minHeight: "200px"
   }
 };
 
