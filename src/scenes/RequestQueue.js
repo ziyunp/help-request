@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import RequestList from '../components/RequestList';
-import { isPending } from '../utils/dataHelpers';
+import { isActive } from '../utils/dataHelpers';
 import { BASE_COLUMNS, ACTION_COLUMN } from '../utils/constants';
 
 function RequestQueue({ data, updateState }) {
@@ -9,7 +9,7 @@ function RequestQueue({ data, updateState }) {
 
   useEffect(() => {
     function filterData() {
-      const filteredData = data.filter(d => isPending(d));
+      const filteredData = data.filter(d => isActive(d));
       setRequests(filteredData);
     }
     filterData();

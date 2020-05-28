@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import RequestList from '../components/RequestList';
-import { isAddressed } from '../utils/dataHelpers';
+import { isActive } from '../utils/dataHelpers';
 import { BASE_COLUMNS } from '../utils/constants';
 
 function RequestQueue({ data, updateState }) {
   const [ requests, setRequests ] = useState(false);
   useEffect(() => {
     function filterData() {
-      const filteredData = data.filter(d => isAddressed(d));
+      const filteredData = data.filter(d => !isActive(d));
       setRequests(filteredData);
     }
     filterData();
