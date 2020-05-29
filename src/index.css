@@ -55,15 +55,20 @@ code {
 
 .action-buttons {
   display: flex;
+  justify-content: flex-start;
+}
+
+.form-buttons {
+  display: flex;
   justify-content: flex-end;
 }
 
-.action-buttons .left {
+.form-buttons .left {
   flex-direction: row;
   margin-right: 15px;
 }
 
-.action-buttons .right {
+.form-buttons .right {
   flex-direction: row;
 }
 

@@ -21,7 +21,6 @@ export const ACTION_COLUMN = [
   {
     id: 'actions',
     label: 'Actions',
-    minWidth: 150,
-    align: 'center'
+    minWidth: 100,
   }
 ]

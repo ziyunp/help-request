@@ -1,5 +1,7 @@
 import React from 'react';
-import { Button, TableRow, TableCell } from '@material-ui/core';
+import { IconButton, TableRow, TableCell } from '@material-ui/core';
+import { green } from '@material-ui/core/colors';
+import DeleteIcon from '@material-ui/icons/Delete';
 import StatusButton from './StatusButton';
 import { deleteRequest } from '../utils/queryHelpers';
 import { RAISED, ADDRESSED, WITH_HELPER } from '../utils/constants';
@@ -19,23 +21,20 @@ function RequestItem({ columns, data, updateState }) {
               <TableCell key={column.id} align={column.align}>
                 <div className="action-buttons">
                   {data.isNext && 
-                    <div className="left">
-                      <StatusButton label="Give Help" status={WITH_HELPER} color="primary" id={data.id} updateState={updateState} />
-                    </div>
-                  }
-                  <div className="right">
-                  <Button variant="text" size="small" onClick={() => handleDelete(data.id)}>
-                    Cancel
-                  </Button>
-                  </div>
-                  
+                        <StatusButton label="Give Help" status={WITH_HELPER} color="primary" style={{ backgroundColor: green[500] }} id={data.id} updateState={updateState} />
+                    }
+                    <IconButton size="small" style={{ marginLeft: 20 }} aria-label="delete" onClick={() => handleDelete(data.id)}>
+                      <DeleteIcon />
+                    </IconButton>
                 </div>
               </TableCell>
             );
           } else {
             return (
-              <TableCell key={column.id} align={column.align} className="actionButtons">
-                <StatusButton label="Addressed" status={ADDRESSED} color="secondary" id={data.id} updateState={updateState} />
+              <TableCell key={column.id} align={column.align}>
+                <div className="action-buttons">
+                  <StatusButton label="Addressed" status={ADDRESSED} color="primary" id={data.id} updateState={updateState} />
+                </div>
               </TableCell>
             );
           }

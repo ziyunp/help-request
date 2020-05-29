@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { AppBar, Button, Toolbar, Typography } from '@material-ui/core';
+import { AppBar, Button, Icon, Toolbar, Typography } from '@material-ui/core';
 import Modal from 'react-modal';
 import CreateRequest from './CreateRequest';
 import Navbar from './Navbar';
