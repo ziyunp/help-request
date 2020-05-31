@@ -4,7 +4,7 @@ import { green } from '@material-ui/core/colors';
 import DeleteIcon from '@material-ui/icons/Delete';
 import StatusButton from './StatusButton';
 import { deleteRequest } from '../utils/queryHelpers';
-import { RAISED, ADDRESSED, WITH_HELPER } from '../utils/constants';
+import { RAISED, ADDRESSED, WITH_HELPER, GIVE_HELP, PENDING, RESOLVED } from '../utils/constants';
 import { formatStatusString, formatDateString } from '../utils/dataHelpers';
 
 function RequestItem({ columns, data, updateState }) {
@@ -21,12 +21,30 @@ function RequestItem({ columns, data, updateState }) {
             return (
               <TableCell key={column.id} align={column.align}>
                 <div className="action-buttons">
-                  {data.isNext && 
-                        <StatusButton label="Give Help" status={WITH_HELPER} color="primary" style={{ backgroundColor: green[500] }} id={data.id} updateState={updateState} />
+                  <div className="left">
+                    {data.isNext 
+                      ? <StatusButton 
+                          label={GIVE_HELP}
+                          status={WITH_HELPER} 
+                          color="primary" 
+                          style={{ backgroundColor: green[500] }} 
+                          id={data.id} 
+                          updateState={updateState} 
+                        />
+                      : <StatusButton 
+                          label={PENDING}
+                          variant="contained"
+                          style={{ width: 85 }}
+                          id={data.id}
+                          disabled
+                        />                    
                     }
-                    <IconButton size="small" style={{ marginLeft: 20 }} aria-label="delete" onClick={() => handleDelete(data.id)}>
+                  </div>
+                  <div className="right">
+                    <IconButton size="small" style={{ position: "absolute",  }} aria-label="delete" onClick={() => handleDelete(data.id)}>
                       <DeleteIcon />
                     </IconButton>
+                  </div>
                 </div>
               </TableCell>
             );
@@ -34,7 +52,7 @@ function RequestItem({ columns, data, updateState }) {
             return (
               <TableCell key={column.id} align={column.align}>
                 <div className="action-buttons">
-                  <StatusButton label="Addressed" status={ADDRESSED} color="primary" id={data.id} updateState={updateState} />
+                  <StatusButton label={RESOLVED} status={ADDRESSED} color="primary" id={data.id} updateState={updateState} />
                 </div>
               </TableCell>
             );

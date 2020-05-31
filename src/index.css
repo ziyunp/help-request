@@ -58,18 +58,13 @@ code {
   justify-content: flex-start;
 }
 
-.form-buttons {
-  display: flex;
-  justify-content: flex-end;
+.action-buttons .left {
+  flex-direction: row;
 }
 
-.form-buttons .left {
+.action-buttons .right {
   flex-direction: row;
-  margin-right: 15px;
-}
-
-.form-buttons .right {
-  flex-direction: row;
+  margin-left: 15px;
 }
 
 .empty-modal {

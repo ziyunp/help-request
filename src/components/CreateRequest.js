@@ -61,7 +61,7 @@ function CreateRequest({ closeModal, updateState }) {
             error={errors.location}
             />
         </div>
-        <div className="input form-buttons">
+        <div className="input action-buttons">
         <div className="left">
           <Button 
             variant="outlined" 

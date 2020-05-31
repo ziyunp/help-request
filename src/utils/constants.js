@@ -1,7 +1,14 @@
+// database values
 export const RAISED = "raised";
 export const WITH_HELPER = "with_helper";
 export const ADDRESSED = "addressed";
 
+// labels
+export const GIVE_HELP = "Give Help";
+export const PENDING = "Pending";
+export const RESOLVED = "Resolved";
+
+// RequestList columns
 export const BASE_COLUMNS = [
   { id: 'pos', label: 'No.', minWidth: 100 },
   { id: 'title', label: 'Title', minWidth: 300},
@@ -26,6 +33,6 @@ export const ACTION_COLUMN = [
   {
     id: 'actions',
     label: 'Actions',
-    minWidth: 100,
+    minWidth: 150,
   }
 ]
