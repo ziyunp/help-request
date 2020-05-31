@@ -5,7 +5,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import StatusButton from './StatusButton';
 import { deleteRequest } from '../utils/queryHelpers';
 import { RAISED, ADDRESSED, WITH_HELPER } from '../utils/constants';
-import { formatStatusString } from '../utils/dataHelpers';
+import { formatStatusString, formatDateString } from '../utils/dataHelpers';
 
 function RequestItem({ columns, data, updateState }) {
   async function handleDelete(id) {
@@ -41,8 +41,13 @@ function RequestItem({ columns, data, updateState }) {
           }
 
         } else {
-          const value = column.id === 'status' ? formatStatusString(data[column.id]): data[column.id];
-          return (
+          const value = column.id === 'status' 
+            ? formatStatusString(data[column.id])
+            : column.id === 'created_at' 
+              ? formatDateString(data[column.id])
+              : data[column.id];
+
+            return (
             <TableCell key={column.id} align={column.align}>
               {value}
             </TableCell>

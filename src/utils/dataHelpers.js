@@ -6,15 +6,20 @@ export const isActive = request => {
 
 export const createData = (pos, isNext, request) => {
   pos = pos.toString();
-  const { id, title, location, status } = request;
-  return { pos, isNext, id, title, location, status };
+  const { id, title, location, status, created_at } = request;
+  return { pos, isNext, id, title, location, status, created_at };
 }
 
 export const formatStatusString = (status) => {
   switch(status) {
-    case RAISED: return "Raised";
+    case RAISED: return "Pending";
     case WITH_HELPER: return "With Helper";
     case ADDRESSED: return "Addressed";
     default: return "";
   }
+}
+
+export const formatDateString = (ISODate) => {
+  const date = new Date(ISODate);
+  return date.toLocaleString();
 }

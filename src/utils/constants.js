@@ -15,6 +15,11 @@ export const BASE_COLUMNS = [
     label: 'Status',
     minWidth: 200,
   },
+  {
+    id: 'created_at',
+    label: 'Time Raised',
+    minWidth: 200,
+  },
 ];
 
 export const ACTION_COLUMN = [
