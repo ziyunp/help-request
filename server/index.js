@@ -4,15 +4,21 @@
 const path = require('path');
 const express = require('express');
 const app = express();
-const publicPath = path.join(__dirname, '..', 'public');
-
-app.use(express.static(publicPath));
+// const publicPath = path.join(__dirname, '..', 'public');
+let root = path.join(__dirname, '..', 'build/')
+app.use(express.static(root))
+app.use(function(req, res, next) {
+  if (req.method === 'GET' && req.accepts('html') && !req.is('json') && !req.path.includes('.')) {
+    res.sendFile('index.html', { root })
+  } else next()
+})
+// app.use(express.static(publicPath));
 
 const port = process.env.PORT || 3000;
 
-app.get('*', (req, res) => {
-  res.sendFile(path.join(publicPath, 'index.html'));
-});
+// app.get('*', (req, res) => {
+//   res.sendFile(path.join(publicPath, 'index.html'));
+// });
 
 app.listen(port, () => {
   console.log(`App running on port ${port}.`)
