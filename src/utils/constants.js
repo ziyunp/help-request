@@ -2,6 +2,7 @@
 export const RAISED = "raised";
 export const WITH_HELPER = "with_helper";
 export const ADDRESSED = "addressed";
+export const CANCELLED = "cancelled";
 
 // labels
 export const GIVE_HELP = "Give Help";

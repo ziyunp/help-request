@@ -3,13 +3,13 @@ import { IconButton, TableRow, TableCell } from '@material-ui/core';
 import { green } from '@material-ui/core/colors';
 import DeleteIcon from '@material-ui/icons/Delete';
 import StatusButton from './StatusButton';
-import { deleteRequest } from '../utils/queryHelpers';
-import { RAISED, ADDRESSED, WITH_HELPER, GIVE_HELP, PENDING, RESOLVED } from '../utils/constants';
+import { RAISED, ADDRESSED, WITH_HELPER, GIVE_HELP, PENDING, RESOLVED, CANCELLED } from '../utils/constants';
 import { formatStatusString, formatDateString } from '../utils/dataHelpers';
+import { updateRequest } from '../utils/queryHelpers';
 
 function RequestItem({ columns, data, updateState }) {
   async function handleDelete(id) {
-    const updatedRequests = await deleteRequest(id);
+    const updatedRequests = await updateRequest(id, CANCELLED);
     updateState(updatedRequests);
   }
 

@@ -46,15 +46,3 @@ export const updateRequest = (id, status) => {
       return getRequests();
     });
 }
-
-export const deleteRequest = (id) => {
-  return fetch(`http://localhost:3001/requests/${id}`, {
-    method: 'DELETE',
-  })
-    .then(response => {
-      return response.text();
-    })
-    .then(data => {
-      return getRequests();
-    });
-}

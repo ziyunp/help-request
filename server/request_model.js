@@ -13,9 +13,14 @@ const getRequests = () => {
   return new Promise(function(resolve, reject) {
     pool.query('SELECT * FROM requests ORDER BY id ASC', (error, results) => {
       if (error) {
-        reject(error)
+        reject(error);
       }
-      resolve(results.rows);
+      try {
+        resolve(results.rows);
+      } catch(e) {
+        reject(e);
+      }
+      
     })
   }) 
 }
@@ -24,9 +29,13 @@ const getNextRequest = () => {
   return new Promise(function(resolve, reject) {
     pool.query('SELECT * FROM requests WHERE status=\'raised\' ORDER BY id ASC LIMIT 1', (error, results) => {
       if (error) {
-        reject(error)
+        reject(error);
       }
-      resolve(results.rows);
+      try {
+        resolve(results.rows);
+      } catch(e) {
+        reject(e);
+      }
     })
   }) 
 }
@@ -38,8 +47,7 @@ const createRequest = (body) => {
       if (error) {
         reject(error)
       }
-      // TODO: for all the results.rows, check if there's results before doing that!
-      resolve(`A new request has been added. Title: ${results.rows[0].title}, Location: ${results.rows[0].location}`)
+      resolve(`A new request has been added.`)
     })
   })
 }
@@ -47,22 +55,11 @@ const createRequest = (body) => {
 const updateRequest = (body) => {
   return new Promise(function(resolve, reject) {
     const { id, status } = body
-    pool.query('UPDATE requests SET status = $2 WHERE id = $1 RETURNING *', [id, status], (error, results) => {
+    pool.query('UPDATE requests SET status = $2, updated_at = CURRENT_TIMESTAMP WHERE id = $1 RETURNING *', [id, status], (error, results) => {
       if (error) {
         reject(error)
       }
-      resolve(`The status of the request has been updated. Title: ${results.rows[0].title}, Location: ${results.rows[0].location}, Status: ${results.rows[0].status}`)
-    })
-  })
-}
-
-const deleteRequest = (id) => {
-  return new Promise(function(resolve, reject) {
-    pool.query('DELETE FROM requests WHERE id = $1', [id], (error, results) => {
-      if (error) {
-        reject(error)
-      }
-      resolve(`Request deleted with ID: ${id}`)
+      resolve(`The status of the request has been updated.`)
     })
   })
 }
@@ -72,5 +69,4 @@ module.exports = {
   getNextRequest,
   createRequest,
   updateRequest,
-  deleteRequest
 }

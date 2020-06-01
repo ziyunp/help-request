@@ -1,7 +1,8 @@
-import { ADDRESSED, RAISED, WITH_HELPER } from '../utils/constants';
+import { ADDRESSED, RAISED, WITH_HELPER, CANCELLED } from '../utils/constants';
 
 export const isActive = request => {
-  return request.status !== ADDRESSED;
+  const { status } = request;
+  return status === RAISED || status === WITH_HELPER;
 }
 
 export const createData = (pos, isNext, request) => {
@@ -15,6 +16,7 @@ export const formatStatusString = (status) => {
     case RAISED: return "Raised";
     case WITH_HELPER: return "With Helper";
     case ADDRESSED: return "Addressed";
+    case CANCELLED: return "Cancelled";
     default: return "";
   }
 }
