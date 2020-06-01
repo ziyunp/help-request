@@ -3,9 +3,11 @@ import { AppBar, Button, Toolbar, Typography } from '@material-ui/core';
 import Modal from 'react-modal';
 import CreateRequest from './CreateRequest';
 import Navbar from './Navbar';
+import GiveHelp from './GiveHelp';
 
 function Appbar({ onChange, updateState, getQueuePos }) {
   const [ isRequestModalOpen, setRequestModalOpen ] = useState(false);
+  const [ isHelpModalOpen, setHelpModalOpen ] = useState(false);
 
   function toggleOpenRequestModal() {
     setRequestModalOpen(!isRequestModalOpen);
@@ -13,6 +15,14 @@ function Appbar({ onChange, updateState, getQueuePos }) {
 
   function closeRequestModal() {
     setRequestModalOpen(false);
+  }
+
+  function toggleOpenHelpModal() {
+    setHelpModalOpen(!isHelpModalOpen);
+  }
+
+  function closeHelpModal() {
+    setHelpModalOpen(false);
   }
 
   return (
@@ -25,22 +35,38 @@ function Appbar({ onChange, updateState, getQueuePos }) {
         <Navbar onChange={onChange}/>
         </div>
         <div className="top-right">
-          <Button variant="contained" onClick={toggleOpenRequestModal}>
-            New Request
+          <div className="left">
+            <Button variant="contained" onClick={toggleOpenRequestModal}>
+              New Request
+            </Button>
+            <Modal 
+              isOpen={isRequestModalOpen} 
+              onRequestClose={closeRequestModal} 
+              centered
+              style={customStyles}
+              ariaHideApp={false}
+            >
+              <CreateRequest 
+                closeModal={closeRequestModal} 
+                updateState={updateState}
+                getQueuePos={getQueuePos}
+              />
+            </Modal>
+          </div>
+          <div className="right">
+          <Button variant="contained" onClick={toggleOpenHelpModal}>
+            Give help
           </Button>
           <Modal 
-            isOpen={isRequestModalOpen} 
-            onRequestClose={closeRequestModal} 
+            isOpen={isHelpModalOpen} 
+            onHelpClose={closeHelpModal} 
             centered
             style={customStyles}
             ariaHideApp={false}
           >
-            <CreateRequest 
-              closeModal={closeRequestModal} 
-              updateState={updateState}
-              getQueuePos={getQueuePos}
-            />
+						<GiveHelp closeModal={closeHelpModal} updateState={updateState}/>
 					</Modal>
+          </div>
         </div>
       </Toolbar>
     </AppBar>

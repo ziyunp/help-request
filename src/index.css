@@ -41,7 +41,16 @@ code {
 	flex-direction: row;
 	flex-wrap: nowrap;
 	justify-content: flex-end;
-	align-items: center;
+  align-items: center;
+}
+
+.top-right .left {
+  flex-direction: row;
+  margin-right: 15px;
+}
+
+.top-left .right {
+  flex-direction: row;
 }
 
 .input {

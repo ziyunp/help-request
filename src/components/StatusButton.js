@@ -6,8 +6,8 @@ function StatusButton({ label, status, color, id, updateState, style, disabled }
   async function handleClick(id, status) {
     const updatedRequests = await updateRequest(id, status);
     updateState(updatedRequests);
-
   }
+
   return (
     <Button 
       size="small" 
