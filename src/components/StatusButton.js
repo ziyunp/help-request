@@ -16,6 +16,7 @@ function StatusButton({ label, status, color, id, updateState, style, disabled }
       variant="contained" 
       onClick={() => handleClick(id, status)} 
       disabled={disabled}
+      style={{ ...style, width: 87 }}
     >
       {label}
     </Button>
