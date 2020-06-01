@@ -41,7 +41,7 @@ function RequestItem({ columns, data, updateState }) {
                     }
                   </div>
                   <div className="right">
-                    <IconButton size="small" style={{ position: "absolute",  }} aria-label="delete" onClick={() => handleDelete(data.id)}>
+                    <IconButton size="small" aria-label="delete" onClick={() => handleDelete(data.id)}>
                       <DeleteIcon />
                     </IconButton>
                   </div>

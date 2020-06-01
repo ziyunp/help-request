@@ -20,7 +20,7 @@ export const BASE_COLUMNS = [
   {
     id: 'status',
     label: 'Status',
-    minWidth: 200,
+    minWidth: 150,
   },
   {
     id: 'created_at',

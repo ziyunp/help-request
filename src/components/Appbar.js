@@ -4,12 +4,13 @@ import Modal from 'react-modal';
 import CreateRequest from './CreateRequest';
 import Navbar from './Navbar';
 
-function Appbar({ onChange, updateState }) {
+function Appbar({ onChange, updateState, getQueuePos }) {
   const [ isRequestModalOpen, setRequestModalOpen ] = useState(false);
 
   function toggleOpenRequestModal() {
     setRequestModalOpen(!isRequestModalOpen);
   }
+
   function closeRequestModal() {
     setRequestModalOpen(false);
   }
@@ -34,7 +35,11 @@ function Appbar({ onChange, updateState }) {
             style={customStyles}
             ariaHideApp={false}
           >
-						<CreateRequest closeModal={closeRequestModal} updateState={updateState}/>
+            <CreateRequest 
+              closeModal={closeRequestModal} 
+              updateState={updateState}
+              getQueuePos={getQueuePos}
+            />
 					</Modal>
         </div>
       </Toolbar>

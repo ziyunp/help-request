@@ -12,7 +12,7 @@ export const createData = (pos, isNext, request) => {
 
 export const formatStatusString = (status) => {
   switch(status) {
-    case RAISED: return "Pending";
+    case RAISED: return "Raised";
     case WITH_HELPER: return "With Helper";
     case ADDRESSED: return "Addressed";
     default: return "";

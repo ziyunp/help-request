@@ -3,9 +3,11 @@ import { useForm } from "react-hook-form";
 import { Button, TextField, Typography } from '@material-ui/core';
 import { createRequest } from '../utils/queryHelpers';
 
-function CreateRequest({ closeModal, updateState }) {
+function CreateRequest({ closeModal, updateState, getQueuePos }) {
   const [ titleValue, setTitleValue ] = useState('');
   const [ locationValue, setLocationValue ] = useState('');
+  const [ queuePos, setQueuePos ] = useState(0);
+
   const { handleSubmit, register, errors } = useForm();
 
   function handleTitleChange (e) {
@@ -17,72 +19,94 @@ function CreateRequest({ closeModal, updateState }) {
   }
 
   async function onSubmit () {
+    const currentPosition = getQueuePos();
+    setQueuePos(currentPosition + 1);
     const updatedRequests = await createRequest(titleValue, locationValue);
     updateState(updatedRequests);
-    closeModal();
   }
 
   return (
-    <div>
-      <Typography variant="title">New Request</Typography>
-      <Button 
-        variant="outlined" 
-        size="small" 
-        className="close-button" 
-        onClick={closeModal}
-      >
-        close
-      </Button>
-      <form noValidate autoComplete="off" onSubmit={handleSubmit(onSubmit)}>
-        <div className="input">
-          <TextField
-            id="outlined-basic" 
-            label="Question Summary" 
-            variant="outlined" 
-            fullWidth
-            name="title"
-            value={titleValue}
-            onChange={handleTitleChange}
-            inputRef={register({ required: true })}
-            required
-            error={errors.title}
-            />
-        </div>
-        <div className="input">
-          <TextField
-            id="outlined-basic" 
-            label="Location e.g. Ray13" 
-            variant="outlined" 
-            name="location"
-            value={locationValue}
-            onChange={handleLocationChange}
-            inputRef={register({ required: true })}
-            required
-            error={errors.location}
-            />
-        </div>
-        <div className="input action-buttons">
-        <div className="left">
-          <Button 
-            variant="outlined" 
-            onClick={closeModal}
-          >
-            cancel
-          </Button>
-        </div>
-        <div className="right">
-          <Button 
-            type="submit"
-            variant="contained" 
-            onClick={handleSubmit(onSubmit)}
-            color="primary"
-          >
-            submit
-          </Button>
-        </div>
-        </div>
-      </form>
-    </div>
+      queuePos === 0 
+        ? (
+          <div>
+            <Typography variant="title">New Request</Typography>
+            <Button 
+              variant="outlined" 
+              size="small" 
+              className="close-button" 
+              onClick={closeModal}
+            >
+              close
+            </Button>
+            <form noValidate autoComplete="off" onSubmit={handleSubmit(onSubmit)}>
+              <div className="input">
+                <TextField
+                  id="outlined-basic" 
+                  label="Question Summary" 
+                  variant="outlined" 
+                  fullWidth
+                  name="title"
+                  value={titleValue}
+                  onChange={handleTitleChange}
+                  inputRef={register({ required: true })}
+                  required
+                  error={errors.title}
+                  />
+              </div>
+              <div className="input">
+                <TextField
+                  id="outlined-basic" 
+                  label="Location e.g. Ray13" 
+                  variant="outlined" 
+                  name="location"
+                  value={locationValue}
+                  onChange={handleLocationChange}
+                  inputRef={register({ required: true })}
+                  required
+                  error={errors.location}
+                  />
+              </div>
+              <div className="input action-buttons">
+              <div className="left">
+                <Button 
+                  variant="outlined" 
+                  onClick={closeModal}
+                >
+                  cancel
+                </Button>
+              </div>
+              <div className="right">
+                <Button 
+                  type="submit"
+                  variant="contained" 
+                  onClick={handleSubmit(onSubmit)}
+                  color="primary"
+                >
+                  submit
+                </Button>
+              </div>
+              </div>
+            </form>
+          </div>
+        )
+        : (
+          <div>
+            <Typography variant="title">Request Submitted</Typography>
+            <Button 
+              variant="outlined" 
+              size="small" 
+              className="close-button" 
+              onClick={closeModal}
+            >
+              close
+            </Button>
+            <div className="empty-modal">
+              <Typography variant="body1">
+                Your position in queue is: {queuePos}
+              </Typography>
+            </div>
+          </div>
+      )
   );
 }
 
