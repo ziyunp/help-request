@@ -11,7 +11,7 @@ const pool = new Pool({
 
 const getRequests = () => {
   return new Promise(function(resolve, reject) {
-    pool.query('SELECT * FROM requests ORDER BY id ASC', (error, results) => {
+    pool.query('SELECT * FROM requests ORDER BY created_at ASC', (error, results) => {
       if (error) {
         reject(error);
       }
@@ -27,7 +27,7 @@ const getRequests = () => {
 
 const getNextRequest = () => {
   return new Promise(function(resolve, reject) {
-    pool.query('SELECT * FROM requests WHERE status=\'raised\' ORDER BY id ASC LIMIT 1', (error, results) => {
+    pool.query('SELECT * FROM requests WHERE status=\'raised\' ORDER BY created_at ASC LIMIT 1', (error, results) => {
       if (error) {
         reject(error);
       }
