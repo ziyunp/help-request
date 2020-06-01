@@ -1,5 +1,5 @@
 import React from 'react';
-import { IconButton, TableRow, TableCell } from '@material-ui/core';
+import { IconButton, TableRow, TableCell, Typography } from '@material-ui/core';
 import { green } from '@material-ui/core/colors';
 import DeleteIcon from '@material-ui/icons/Delete';
 import StatusButton from './StatusButton';
@@ -67,7 +67,9 @@ function RequestItem({ columns, data, updateState }) {
 
             return (
             <TableCell key={column.id} align={column.align}>
-              {value}
+              <Typography variant="body2" noWrap>
+                {value}
+              </Typography>
             </TableCell>
           );
         }

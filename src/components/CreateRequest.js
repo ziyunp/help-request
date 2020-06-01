@@ -50,8 +50,12 @@ function CreateRequest({ closeModal, updateState, getQueuePos }) {
                   onChange={handleTitleChange}
                   inputRef={register({ required: true })}
                   required
-                  error={errors.title}
                   />
+                  {errors.title && 
+                    <Typography variant="subtitle2" color="secondary">
+                      Required
+                    </Typography>
+                  }
               </div>
               <div className="input">
                 <TextField
@@ -63,10 +67,14 @@ function CreateRequest({ closeModal, updateState, getQueuePos }) {
                   onChange={handleLocationChange}
                   inputRef={register({ required: true })}
                   required
-                  error={errors.location}
                   />
+                  {errors.location && 
+                    <Typography variant="subtitle2" color="secondary">
+                      Required
+                    </Typography>
+                  }
               </div>
-              <div className="input action-buttons">
+              <div className="input form-buttons">
               <div className="left">
                 <Button 
                   variant="outlined" 
