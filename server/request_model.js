@@ -11,7 +11,7 @@ const pool = new Pool({
 
 const getRequests = () => {
   return new Promise(function(resolve, reject) {
-    pool.query('SELECT * FROM requests ORDER BY created_at ASC', (error, results) => {
+    pool.query('SELECT * FROM help_request ORDER BY created_at ASC', (error, results) => {
       if (error) {
         reject(error);
       }
@@ -27,7 +27,7 @@ const getRequests = () => {
 
 const getNextRequest = () => {
   return new Promise(function(resolve, reject) {
-    pool.query('SELECT * FROM requests WHERE status=\'raised\' ORDER BY created_at ASC LIMIT 1', (error, results) => {
+    pool.query('SELECT * FROM help_request WHERE status=\'raised\' ORDER BY created_at ASC LIMIT 1', (error, results) => {
       if (error) {
         reject(error);
       }
@@ -43,7 +43,7 @@ const getNextRequest = () => {
 const createRequest = (body) => {
   return new Promise(function(resolve, reject) {
     const { title, location, status } = body
-    pool.query('INSERT INTO requests (title, location, status) VALUES ($1, $2, $3) RETURNING *', [title, location, status], (error, results) => {
+    pool.query('INSERT INTO help_request (title, location, status) VALUES ($1, $2, $3) RETURNING *', [title, location, status], (error, results) => {
       if (error) {
         reject(error)
       }
@@ -55,7 +55,7 @@ const createRequest = (body) => {
 const updateRequest = (body) => {
   return new Promise(function(resolve, reject) {
     const { id, status } = body
-    pool.query('UPDATE requests SET status = $2, updated_at = CURRENT_TIMESTAMP WHERE id = $1 RETURNING *', [id, status], (error, results) => {
+    pool.query('UPDATE help_request SET status = $2, updated_at = CURRENT_TIMESTAMP WHERE id = $1 RETURNING *', [id, status], (error, results) => {
       if (error) {
         reject(error)
       }

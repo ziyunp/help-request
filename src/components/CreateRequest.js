@@ -59,7 +59,8 @@ function CreateRequest({ closeModal, updateState, getQueuePos }) {
               <div className="input">
                 <TextField
                   id="outlined-basic" 
-                  label="Location e.g. Ray13" 
+                  label="Location e.g. Computer-32" 
+                  fullWidth
                   variant="outlined" 
                   name="location"
                   value={locationValue}

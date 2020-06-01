@@ -34,7 +34,6 @@ function RequestItem({ columns, data, updateState }) {
                       : <StatusButton 
                           label={WAITING}
                           variant="contained"
-                          style={{ width: 85 }}
                           id={data.id}
                           disabled
                         />                    
