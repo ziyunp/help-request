@@ -11,14 +11,15 @@ function RequestList({ columns, data, updateState }) {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
   
-  const handleChangePage = (event, newPage) => {
+  function handleChangePage (event, newPage) {
     setPage(newPage);
   };
 
-  const handleChangeRowsPerPage = (event) => {
+  function handleChangeRowsPerPage (event) {
     setRowsPerPage(+event.target.value);
     setPage(0);
   };
+
   useEffect(() => {
     function getData() {
       if (data) {
@@ -84,7 +85,7 @@ const useStyles = makeStyles({
     width: '100%',
   },
   container: {
-    maxHeight: 600,
+    maxHeight: 650,
   },
 });
 

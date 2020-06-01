@@ -26,19 +26,18 @@ function CreateRequest({ closeModal, updateState, getQueuePos }) {
   }
 
   return (
-      queuePos === 0 
-        ? (
-          <div>
-            <Typography variant="title">New Request</Typography>
-            <Button 
-              variant="outlined" 
-              size="small" 
-              className="close-button" 
-              onClick={closeModal}
-            >
-              close
-            </Button>
-            <form noValidate autoComplete="off" onSubmit={handleSubmit(onSubmit)}>
+    <div>
+      <Typography variant="title">New Request</Typography>
+      <Button 
+        variant="outlined" 
+        size="small" 
+        className="close-button" 
+        onClick={closeModal}
+      >
+        close
+      </Button>
+      {queuePos === 0 
+        ? <form noValidate autoComplete="off" onSubmit={handleSubmit(onSubmit)}>
               <div className="input">
                 <TextField
                   id="outlined-basic" 
@@ -95,26 +94,14 @@ function CreateRequest({ closeModal, updateState, getQueuePos }) {
               </div>
               </div>
             </form>
-          </div>
-        )
-        : (
-          <div>
-            <Typography variant="title">Request Submitted</Typography>
-            <Button 
-              variant="outlined" 
-              size="small" 
-              className="close-button" 
-              onClick={closeModal}
-            >
-              close
-            </Button>
-            <div className="empty-modal">
+          : <div className="empty-modal">
               <Typography variant="body1">
+                Request submitted.<br/>
                 Your position in queue is: {queuePos}
               </Typography>
             </div>
-          </div>
-      )
+        }
+    </div>
   );
 }
 

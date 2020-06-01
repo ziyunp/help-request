@@ -6,7 +6,7 @@ export const CANCELLED = "cancelled";
 
 // labels
 export const GIVE_HELP = "Give Help";
-export const PENDING = "Pending";
+export const WAITING = "Waiting";
 export const RESOLVED = "Resolved";
 
 // RequestList columns

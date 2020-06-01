@@ -3,7 +3,7 @@ import { IconButton, TableRow, TableCell, Typography } from '@material-ui/core';
 import { green } from '@material-ui/core/colors';
 import DeleteIcon from '@material-ui/icons/Delete';
 import StatusButton from './StatusButton';
-import { RAISED, ADDRESSED, WITH_HELPER, GIVE_HELP, PENDING, RESOLVED, CANCELLED } from '../utils/constants';
+import { RAISED, ADDRESSED, WITH_HELPER, GIVE_HELP, WAITING, RESOLVED, CANCELLED } from '../utils/constants';
 import { formatStatusString, formatDateString } from '../utils/dataHelpers';
 import { updateRequest } from '../utils/queryHelpers';
 
@@ -32,7 +32,7 @@ function RequestItem({ columns, data, updateState }) {
                           updateState={updateState} 
                         />
                       : <StatusButton 
-                          label={PENDING}
+                          label={WAITING}
                           variant="contained"
                           style={{ width: 85 }}
                           id={data.id}
@@ -67,9 +67,7 @@ function RequestItem({ columns, data, updateState }) {
 
             return (
             <TableCell key={column.id} align={column.align}>
-              <Typography variant="body2" noWrap>
-                {value}
-              </Typography>
+              {value}
             </TableCell>
           );
         }
