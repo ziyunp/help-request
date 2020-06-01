@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import RequestList from '../components/RequestList';
 import { isActive } from '../utils/dataHelpers';
-import { BASE_COLUMNS } from '../utils/constants';
+import { BASE_COLUMNS, ADDRESSED_TIME_COLUMN } from '../utils/constants';
 
 function RequestQueue({ data, updateState }) {
   const [ requests, setRequests ] = useState(false);
+  const columns = BASE_COLUMNS.concat(ADDRESSED_TIME_COLUMN);
+
   useEffect(() => {
     function filterData() {
       const filteredData = data.filter(d => !isActive(d));
@@ -14,7 +16,7 @@ function RequestQueue({ data, updateState }) {
   }, [data]);
   
   return (
-    <RequestList data={requests} columns={BASE_COLUMNS} updateState={updateState} />
+    <RequestList data={requests} columns={columns} updateState={updateState} />
   );
 }
 

@@ -7,8 +7,8 @@ export const isActive = request => {
 
 export const createData = (pos, isNext, request) => {
   pos = pos.toString();
-  const { id, title, location, status, created_at } = request;
-  return { pos, isNext, id, title, location, status, created_at };
+  const { id, title, location, status, created_at, updated_at } = request;
+  return { pos, isNext, id, title, location, status, created_at, updated_at };
 }
 
 export const formatStatusString = (status) => {
@@ -24,4 +24,9 @@ export const formatStatusString = (status) => {
 export const formatDateString = (ISODate) => {
   const date = new Date(ISODate);
   return date.toLocaleString();
+}
+
+export const isDate = (date) => {
+  const regExp  = new RegExp('^(-?(?:[1-9][0-9]*)?[0-9]{4})-(1[0-2]|0[1-9])-(3[01]|0[1-9]|[12][0-9])T(2[0-3]|[01][0-9]):([0-5][0-9]):([0-5][0-9])(.[0-9]+)?(Z)?$');
+  return regExp.test(date);
 }

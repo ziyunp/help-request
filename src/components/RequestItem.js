@@ -1,10 +1,10 @@
 import React from 'react';
-import { IconButton, TableRow, TableCell, Typography } from '@material-ui/core';
+import { IconButton, TableRow, TableCell } from '@material-ui/core';
 import { green } from '@material-ui/core/colors';
 import DeleteIcon from '@material-ui/icons/Delete';
 import StatusButton from './StatusButton';
 import { RAISED, ADDRESSED, WITH_HELPER, GIVE_HELP, WAITING, RESOLVED, CANCELLED } from '../utils/constants';
-import { formatStatusString, formatDateString } from '../utils/dataHelpers';
+import { formatStatusString, formatDateString, isDate } from '../utils/dataHelpers';
 import { updateRequest } from '../utils/queryHelpers';
 
 function RequestItem({ columns, data, updateState }) {
@@ -61,7 +61,7 @@ function RequestItem({ columns, data, updateState }) {
         } else {
           const value = column.id === 'status' 
             ? formatStatusString(data[column.id])
-            : column.id === 'created_at' 
+            : isDate(data[column.id])
               ? formatDateString(data[column.id])
               : data[column.id];
 

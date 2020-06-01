@@ -37,3 +37,11 @@ export const ACTION_COLUMN = [
     minWidth: 150,
   }
 ]
+
+export const ADDRESSED_TIME_COLUMN = [
+  {
+    id: 'updated_at',
+    label: 'Time Resolved',
+    minWidth: 150,
+  }
+]
