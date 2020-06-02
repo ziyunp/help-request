@@ -14,7 +14,7 @@ app.get('/requests', async (req, res) => {
   try {
     const client = await pool.connect();
     const result = await client.query('SELECT * FROM help_request ORDER BY created_at ASC');
-    const results = { 'results': (result) ? result.rows : null};
+    const results = result ? result.rows : null;
     res.status(200).send(results);
     client.release();
   } catch (err) {
@@ -27,7 +27,7 @@ app.get('/nextRequest', async (req, res) => {
   try {
     const client = await pool.connect();
     const result = await client.query('SELECT * FROM help_request WHERE status=\'raised\' ORDER BY created_at ASC LIMIT 1');
-    const results = { 'results': (result) ? result.rows : null};
+    const results = result ? result.rows : null;
     res.status(200).send(results);
     client.release();
   } catch (err) {
@@ -41,7 +41,7 @@ app.post('/requests', async (req, res) => {
     const client = await pool.connect();
     const { title, location, status } = req.body;
     const result = await client.query('INSERT INTO help_request (title, location, status) VALUES ($1, $2, $3) RETURNING *', [title, location, status]);
-    const results = { 'results': (result) ? result.rows : null};
+    const results = result ? result.rows : null;
     res.status(200).send(results);
     client.release();
   } catch (err) {
@@ -55,7 +55,7 @@ app.put('/requests', async (req, res) => {
     const client = await pool.connect();
     const { id, status } = req.body;
     const result = await client.query('UPDATE help_request SET status = $2, updated_at = CURRENT_TIMESTAMP WHERE id = $1 RETURNING *', [id, status]);
-    const results = { 'results': (result) ? result.rows : null};
+    const results = result ? result.rows : null;
     res.status(200).send(results);
     client.release();
   } catch (err) {
