@@ -1,13 +1,10 @@
-const Pool = require('pg').Pool
+const { Pool } = require('pg');
 const pool = new Pool({
-  user: 'eyntyilolqfnej',
-  host: 'ec2-46-137-84-140.eu-west-1.compute.amazonaws.com',
-  database: 'df3hga2ai8fk5k',
-  password: '91a07e2dae5dfe7d43051dd1b5def38a67d95662e44ce2dff81865c03ac58977 ',
-  port: 5432,
-  ssl: true
+  connectionString: process.env.DATABASE_URL,
+  ssl: {
+    rejectUnauthorized: false
+  }
 });
-
 // dbname=df3hga2ai8fk5k host=ec2-46-137-84-140.eu-west-1.compute.amazonaws.com port=5432 user=eyntyilolqfnej password=91a07e2dae5dfe7d43051dd1b5def38a67d95662e44ce2dff81865c03ac58977 sslmode=require
 // postgres://eyntyilolqfnej:91a07e2dae5dfe7d43051dd1b5def38a67d95662e44ce2dff81865c03ac58977@ec2-46-137-84-140.eu-west-1.compute.amazonaws.com:5432/df3hga2ai8fk5k
 
@@ -30,7 +27,24 @@ const pool = new Pool({
 //   client.end();
 // });
 
-
+const getRequest = () => {
+  return new Promise(function(resolve, reject) {
+    const client = await pool.connect();
+    client.query('SELECT * FROM help_request')
+    .then(res => resolve(res.rows))
+    .catch(e => alert(e))
+    client.release();
+  }
+  //   const client = await pool.connect();
+  //   const result = await client.query('SELECT * FROM help_request');
+  //   const results = { 'results': (result) ? result.rows : null};
+  //   res.render('pages/db', results );
+  //   client.release();
+  // } catch (err) {
+  //   console.error(err);
+  //   res.send("Error " + err);
+  // }
+  )}
 const getRequests = () => {
   return new Promise(function(resolve, reject) {
     pool.query('SELECT * FROM help_request ORDER BY created_at ASC', (error, results) => {
@@ -86,6 +100,7 @@ const updateRequest = (body) => {
 }
 
 module.exports = {
+  getRequest,
   getRequests,
   getNextRequest,
   createRequest,
