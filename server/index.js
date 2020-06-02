@@ -2,13 +2,16 @@ const path = require('path');
 const express = require('express');
 const app = express();
 const port = process.env.PORT || 5000;
-const request_model = require('./request_model')
+
+const { Pool } = require('pg');
+const pool = new Pool({
+  connectionString: process.env.DATABASE_URL,
+  ssl: {
+    rejectUnauthorized: false
+  }
+});
 
 app.use(express.static(path.resolve(__dirname, '../react-ui/build')));
-
-// app.get('/', function(req, res) {
-//   response.sendFile(path.resolve(__dirname, '../react-ui/build', 'index.html'));
-// });
 
 app.get('/requests', async (req, res) => {
   try {
@@ -63,6 +66,11 @@ app.put('/requests', async (req, res) => {
     res.status(500).send(err);
   }
 })
+
+// All remaining requests return the React app, so it can handle routing.
+app.get('*', function(request, response) {
+  response.sendFile(path.resolve(__dirname, '../react-ui/build', 'index.html'));
+});
 
 app.listen(port, () => {
   console.log(`App running on port ${port}.`)
