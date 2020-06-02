@@ -9,7 +9,7 @@ function RequestQueue({ data, updateState }) {
 
   useEffect(() => {
     function filterData() {
-      const filteredData = data ? data.filter(d => isActive(d)) : [];
+      const filteredData = data.filter(d => isActive(d));
       setRequests(filteredData);
     }
     filterData();
