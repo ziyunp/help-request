@@ -27,9 +27,9 @@ const pool = new Pool({
 //   client.end();
 // });
 
-const getRequest = () => {
+const getRequest = async () => {
+  const client = await pool.connect();
   return new Promise(function(resolve, reject) {
-    const client = await pool.connect();
     client.query('SELECT * FROM help_request')
     .then(res => resolve(res.rows))
     .catch(e => alert(e))
