@@ -6,9 +6,9 @@ const request_model = require('./request_model')
 
 app.use(express.static(path.resolve(__dirname, '../react-ui/build')));
 
-app.get('*', function(request, response) {
-  response.sendFile(path.resolve(__dirname, '../react-ui/build', 'index.html'));
-});
+// app.get('/', function(req, res) {
+//   response.sendFile(path.resolve(__dirname, '../react-ui/build', 'index.html'));
+// });
 
 app.get('/requests', async (req, res) => {
   try {
