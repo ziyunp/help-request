@@ -5,27 +5,6 @@ const pool = new Pool({
     rejectUnauthorized: false
   }
 });
-// dbname=df3hga2ai8fk5k host=ec2-46-137-84-140.eu-west-1.compute.amazonaws.com port=5432 user=eyntyilolqfnej password=91a07e2dae5dfe7d43051dd1b5def38a67d95662e44ce2dff81865c03ac58977 sslmode=require
-// postgres://eyntyilolqfnej:91a07e2dae5dfe7d43051dd1b5def38a67d95662e44ce2dff81865c03ac58977@ec2-46-137-84-140.eu-west-1.compute.amazonaws.com:5432/df3hga2ai8fk5k
-
-// const { Client } = require('pg');
-
-// const client = new Client({
-//   connectionString: process.env.DATABASE_URL,
-//   ssl: {
-//     rejectUnauthorized: false
-//   }
-// });
-
-// client.connect();
-
-// client.query('SELECT table_schema,table_name FROM information_schema.tables;', (err, res) => {
-//   if (err) throw err;
-//   for (let row of res.rows) {
-//     console.log(JSON.stringify(row));
-//   }
-//   client.end();
-// });
 
 const getRequest = async () => {
   const client = await pool.connect();

@@ -1,7 +1,7 @@
 import { RAISED } from '../utils/constants';
 
 export const getRequests = () => {
-  return fetch('/requests')
+  return fetch('/db')
     .then(response => {
       return response.text();
     })
