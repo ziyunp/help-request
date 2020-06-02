@@ -1,24 +1,15 @@
-// const express = require('express')
-// const app = express()
-// const port = 3001
 const path = require('path');
 const express = require('express');
 const app = express();
-// const publicPath = path.join(__dirname, '..', 'public');
-let root = path.join(__dirname, '..', 'build/')
-app.use(express.static(root))
-app.use(function(req, res, next) {
-  if (req.method === 'GET' && req.accepts('html') && !req.is('json') && !req.path.includes('.')) {
-    res.sendFile('index.html', { root })
-  } else next()
-})
-// app.use(express.static(publicPath));
 
-const port = process.env.PORT || 3000;
+app.use(express.static(path.resolve(__dirname, '../react-ui/build')));
 
-// app.get('*', (req, res) => {
-//   res.sendFile(path.join(publicPath, 'index.html'));
-// });
+const port = process.env.PORT || 5000;
+
+app.get('*', function(request, response) {
+  response.sendFile(path.resolve(__dirname, '../react-ui/build', 'index.html'));
+});
+
 
 app.listen(port, () => {
   console.log(`App running on port ${port}.`)
@@ -34,7 +25,13 @@ app.use(function (req, res, next) {
   next();
 });
 
-app.get('/', (req, res) => {
+// might want to change endpoint for requests
+// app.get('/api', function (req, res) {
+//   res.set('Content-Type', 'application/json');
+//   res.send('{"message":"Hello from the custom server!"}');
+// });
+
+app.get('/requests', (req, res) => {
   request_model.getRequests()
   .then(response => {
     res.status(200).send(response);

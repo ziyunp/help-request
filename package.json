@@ -1,56 +1,29 @@
 {
-  "name": "help-request",
-  "version": "0.1.0",
-  "private": true,
-  "type": "module",
+  "name": "server",
+  "version": "1.0.0",
+  "description": "",
   "homepage": "https://app.herokuapp.com/",
   "engines": {
     "npm": "6.14.4",
     "node": "12.16.3"
   },
-  "proxy": "http://localhost:3001",
-  "dependencies": {
-    "@material-ui/core": "^4.10.0",
-    "@material-ui/icons": "^4.9.1",
-    "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.3.2",
-    "@testing-library/user-event": "^7.1.2",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "react-hook-form": "^5.7.2",
-    "react-modal": "^3.11.2",
-    "react-scripts": "3.4.1"
-  },
+  "main": "index.js",
   "scripts": {
-    "start": "node --experimental-modules src/index.js",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "server": "node-env-run server --exec nodemon | pino-colada",
-    "dev": "run-p server start"
+    "start": "node server",
+    "build": "cd react-ui/ && npm install && npm run build"
   },
-  "eslintConfig": {
-    "extends": "react-app"
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
-  "devDependencies": {
-    "body-parser": "^1.19.0",
+  "author": "",
+  "license": "ISC",
+  "cacheDirectories": [
+    "node_modules",
+    "react-ui/node_modules"
+  ],
+  "dependencies": {
     "express": "^4.17.1",
-    "express-pino-logger": "^5.0.0",
-    "node-env-run": "^3.0.2",
-    "nodemon": "^2.0.4",
-    "npm-run-all": "^4.1.5",
-    "pino-colada": "^1.6.1"
+    "pg": "^8.2.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ziyunp/help-request.git"
   }
 }
