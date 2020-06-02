@@ -10,16 +10,6 @@ app.get('*', function(request, response) {
   response.sendFile(path.resolve(__dirname, '../react-ui/build', 'index.html'));
 });
 
-app.get('/db', async (req, res) => {
-  request_model.getRequest()
-  .then(response => {
-    res.status(200).send(response);
-  })
-  .catch(error => {
-    res.status(500).send(error);
-  })
-})
-
 app.get('/requests', (req, res) => {
   request_model.getRequests()
   .then(response => {
@@ -60,18 +50,18 @@ app.put('/requests', (req, res) => {
   })
 })
 
-// .get('/db', async (req, res) => {
-//   try {
-//     const client = await pool.connect();
-//     const result = await client.query('SELECT * FROM test_table');
-//     const results = { 'results': (result) ? result.rows : null};
-//     res.render('pages/db', results );
-//     client.release();
-//   } catch (err) {
-//     console.error(err);
-//     res.send("Error " + err);
-//   }
-// })
+app.get('/db', async (req, res) => {
+  try {
+    const client = await pool.connect();
+    const result = await client.query('SELECT * FROM test_table');
+    const results = { 'results': (result) ? result.rows : null};
+    res.render('pages/db', results );
+    client.release();
+  } catch (err) {
+    console.error(err);
+    res.send("Error " + err);
+  }
+})
 
 app.listen(port, () => {
   console.log(`App running on port ${port}.`)
