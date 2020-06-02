@@ -11,7 +11,8 @@ function App() {
   useEffect(() => {
     async function fetchData() {
       const data = await getRequests();
-      const requestsData = JSON.parse(data);  
+      console.log("data: ", data);
+      const requestsData = data ? JSON.parse(data) : [];
       setRequests(requestsData);
     }
     fetchData();
@@ -22,6 +23,7 @@ function App() {
   }
 
   function updateState(data) {
+    console.log("data: ", data);
     const requestsData = data ? JSON.parse(data) : [];  
     setRequests(requestsData);
   }
