@@ -1,5 +1,3 @@
-export const API = "http://localhost:5000";
-
 // database values
 export const RAISED = "raised";
 export const WITH_HELPER = "with_helper";

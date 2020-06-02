@@ -1,23 +1,26 @@
-// const Pool = require('pg').Pool
-// const pool = new Pool({
-//   user: 'zp619',
-//   host: 'db.doc.ic.ac.uk',
-//   database: 'zp619',
-//   password: 'iclt',
-//   port: 5432,
-//   ssl: true
-// });
-
-const { Client } = require('pg');
-
-const client = new Client({
-  connectionString: process.env.DATABASE_URL,
-  ssl: {
-    rejectUnauthorized: false
-  }
+const Pool = require('pg').Pool
+const pool = new Pool({
+  user: 'eyntyilolqfnej',
+  host: 'ec2-46-137-84-140.eu-west-1.compute.amazonaws.com',
+  database: 'df3hga2ai8fk5k',
+  password: '91a07e2dae5dfe7d43051dd1b5def38a67d95662e44ce2dff81865c03ac58977 ',
+  port: 5432,
+  ssl: true
 });
 
-client.connect();
+// dbname=df3hga2ai8fk5k host=ec2-46-137-84-140.eu-west-1.compute.amazonaws.com port=5432 user=eyntyilolqfnej password=91a07e2dae5dfe7d43051dd1b5def38a67d95662e44ce2dff81865c03ac58977 sslmode=require
+// postgres://eyntyilolqfnej:91a07e2dae5dfe7d43051dd1b5def38a67d95662e44ce2dff81865c03ac58977@ec2-46-137-84-140.eu-west-1.compute.amazonaws.com:5432/df3hga2ai8fk5k
+
+// const { Client } = require('pg');
+
+// const client = new Client({
+//   connectionString: process.env.DATABASE_URL,
+//   ssl: {
+//     rejectUnauthorized: false
+//   }
+// });
+
+// client.connect();
 
 // client.query('SELECT table_schema,table_name FROM information_schema.tables;', (err, res) => {
 //   if (err) throw err;
@@ -30,7 +33,7 @@ client.connect();
 
 const getRequests = () => {
   return new Promise(function(resolve, reject) {
-    client.query('SELECT * FROM help_request ORDER BY created_at ASC', (error, results) => {
+    pool.query('SELECT * FROM help_request ORDER BY created_at ASC', (error, results) => {
       if (error) {
         reject(error);
       }
@@ -39,14 +42,13 @@ const getRequests = () => {
       } catch(e) {
         reject(e);
       }
-      client.end();
     })
   }) 
 }
 
 const getNextRequest = () => {
   return new Promise(function(resolve, reject) {
-    client.query('SELECT * FROM help_request WHERE status=\'raised\' ORDER BY created_at ASC LIMIT 1', (error, results) => {
+    pool.query('SELECT * FROM help_request WHERE status=\'raised\' ORDER BY created_at ASC LIMIT 1', (error, results) => {
       if (error) {
         reject(error);
       }
@@ -55,7 +57,6 @@ const getNextRequest = () => {
       } catch(e) {
         reject(e);
       }
-      client.end();
     });
   }) 
 }
@@ -63,12 +64,11 @@ const getNextRequest = () => {
 const createRequest = (body) => {
   return new Promise(function(resolve, reject) {
     const { title, location, status } = body
-    client.query('INSERT INTO help_request (title, location, status) VALUES ($1, $2, $3) RETURNING *', [title, location, status], (error, results) => {
+    pool.query('INSERT INTO help_request (title, location, status) VALUES ($1, $2, $3) RETURNING *', [title, location, status], (error, results) => {
       if (error) {
         reject(error)
       }
       resolve(`A new request has been added.`)
-      client.end();
     })
   })
 }
@@ -76,12 +76,11 @@ const createRequest = (body) => {
 const updateRequest = (body) => {
   return new Promise(function(resolve, reject) {
     const { id, status } = body
-    client.query('UPDATE help_request SET status = $2, updated_at = CURRENT_TIMESTAMP WHERE id = $1 RETURNING *', [id, status], (error, results) => {
+    pool.query('UPDATE help_request SET status = $2, updated_at = CURRENT_TIMESTAMP WHERE id = $1 RETURNING *', [id, status], (error, results) => {
       if (error) {
         reject(error)
       }
       resolve(`The status of the request has been updated.`)
-      client.end();
     })
   })
 }
