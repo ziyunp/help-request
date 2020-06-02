@@ -1,14 +1,14 @@
-import { RAISED, API } from '../utils/constants';
+import { RAISED } from '../utils/constants';
 
 export const getRequests = () => {
-  return fetch(API + '/requests')
+  return fetch('/requests')
     .then(response => {
       return response.text();
     })
 }
 
 export const getNextRequest = () => {
-  return fetch(API + '/nextRequest')
+  return fetch('/nextRequest')
     .then(response => {
       return response.text();
     })
@@ -16,7 +16,7 @@ export const getNextRequest = () => {
 
 export const createRequest = (title, location) => {
   const status = RAISED;
-  return fetch(API + '/requests', {
+  return fetch('/requests', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -32,7 +32,7 @@ export const createRequest = (title, location) => {
 }
 
 export const updateRequest = (id, status) => {
-  return fetch(API + '/requests', {
+  return fetch('/requests', {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
