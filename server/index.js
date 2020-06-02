@@ -42,6 +42,8 @@ app.get('/nextRequest', async (req, res) => {
 app.post('/requests', async (req, res) => {
   try {
     const client = await pool.connect();
+    //CHECK: why req.body is undefined?
+    console.log('req: ', req);
     const { title, location, status } = req.body;
     const result = await client.query('INSERT INTO help_request (title, location, status) VALUES ($1, $2, $3) RETURNING *', [title, location, status]);
     const results = result ? result.rows : null;
@@ -54,8 +56,11 @@ app.post('/requests', async (req, res) => {
 })
 
 app.put('/requests', async (req, res) => {
+  console.log('req.body: ', req.body);
+
   try {
     const client = await pool.connect();
+    //CHECK: why req.body is undefined?
     const { id, status } = req.body;
     const result = await client.query('UPDATE help_request SET status = $2, updated_at = CURRENT_TIMESTAMP WHERE id = $1 RETURNING *', [id, status]);
     const results = result ? result.rows : null;
